@@ -34,18 +34,6 @@ def index():
 
 
 
-@main.route('/homepage')
-def homepage():
-
-    '''
-    View root page function that returns the index page and its data
-    '''
-    blog = Blog.query.all()
-    return render_template('homepage.html', blog=blog)
-
-
-
-
 @main.route('/blog/', methods = ["GET","POST"])
 def postblog():
     blog_form = BlogForm()
@@ -58,6 +46,14 @@ def postblog():
     return render_template('blog.html', blog_form= blog_form)
 
 
+@main.route('/homepage')
+def homepage():
+
+    '''
+    View root page function that returns the index page and its data
+    '''
+    blog = Blog.query.all()
+    return render_template('homepage.html', blog=blog)
 
 
 @main.route('/commentform/', methods = ["GET","POST"])
@@ -70,3 +66,18 @@ def comment():
         return redirect(url_for('.homepage'))
 
     return render_template('commentform.html',form= form)
+
+
+@main.route('/commentview/')
+def viewcomment():
+
+    '''
+    View root page function that returns the index page and its data
+    '''
+    
+    comments = Comments.query.all()
+    return render_template('commentview.html', comments=comments)
+
+
+
+
