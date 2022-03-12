@@ -17,4 +17,14 @@ from flask_login import login_required
 #     return render_template('index.html')
 
 
+@main.route('/', methods = ["GET","POST"])
+def index():
+    form = SubscribedUserForm()
+    if form.validate_on_submit():
+        subscribe = Subscribe(email = form.email.data, username = form.username.data)
+        db.session.add(subscribe)
+        db.session.commit()
+        mail_message("Welcome to bloglist","email/subscribe",subscribe.email,user=subscribe)
+        return redirect(url_for('main.index'))
 
+    return render_template('index.html', subform = form)
