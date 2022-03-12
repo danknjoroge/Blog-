@@ -1,8 +1,8 @@
 from flask import redirect, render_template, url_for, flash
 from .. import db
-from ..models import Blog, Subscribe
+from ..models import Blog, Comments, Subscribe
 from ..email import mail_message
-from .forms import BlogForm, SubscribedUserForm
+from .forms import BlogForm, CommentForm, SubscribedUserForm
 from . import main
 from flask_login import login_required
 
@@ -56,3 +56,17 @@ def postblog():
         return redirect(url_for('.homepage'))
 
     return render_template('blog.html', blog_form= blog_form)
+
+
+
+
+@main.route('/commentform/', methods = ["GET","POST"])
+def comment():
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comments(comment=form.comment.data,madeby=form.madeby.data, dateposted=form.dateposted.data)
+        db.session.add(comment)
+        db.session.commit()
+        return redirect(url_for('.homepage'))
+
+    return render_template('commentform.html',form= form)
