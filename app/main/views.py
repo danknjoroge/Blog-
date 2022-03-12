@@ -40,7 +40,8 @@ def homepage():
     '''
     View root page function that returns the index page and its data
     '''
-    return render_template('homepage.html')
+    blog = Blog.query.all()
+    return render_template('homepage.html', blog=blog)
 
 
 
@@ -49,7 +50,7 @@ def homepage():
 def postblog():
     blog_form = BlogForm()
     if blog_form.validate_on_submit():
-        blog = Blog(title=blog_form.title.data, description=blog_form.description.data, date=blog_form.date.data)
+        blog = Blog(title=blog_form.title.data, description=blog_form.description.data,postedby= blog_form.postedby.data, date=blog_form.date.data)
         db.session.add(blog)
         db.session.commit()
         return redirect(url_for('.homepage'))

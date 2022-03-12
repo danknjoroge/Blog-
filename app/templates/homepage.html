@@ -1,2 +1,11 @@
 yola
 <a href="/blog/">Add blog</a>
+
+{% for blogs in blog %}
+<h3>{{blogs.title }}</h3>
+<p>{{blogs.description}}</p>
+<p>Posted by:{{blogs.postedby}} </p>
+<p>posted on:{{blogs.date}}</p>
+
+<a href="/comment/">Comment</a>
+{% endfor %}
