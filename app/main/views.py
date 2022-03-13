@@ -1,4 +1,6 @@
 from flask import abort, redirect, render_template, url_for, flash
+
+from app.requests import get_random_quote
 from .. import db
 from ..models import Blog, Comments, Subscribe
 from ..email import mail_message
@@ -19,6 +21,9 @@ from flask_login import login_required
 
 @main.route('/', methods = ["GET","POST"])
 def index():
+
+    quotes = get_random_quote()
+
     form = SubscribedUserForm()
     if form.validate_on_submit():
         subscribe = Subscribe(email = form.email.data)
@@ -31,7 +36,7 @@ def index():
 
         return redirect(url_for('auth.login'))
 
-    return render_template('index.html', subform = form)
+    return render_template('index.html', subform = form, quotes=quotes)
 
 
 

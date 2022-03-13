@@ -10,6 +10,10 @@
             Welcome to Bloglist.
             Post and view blogs here
             <a href="/blog/">Add blog</a>
+
+            {% for quote in quotes%}
+                {{quote.quote}}
+            {% endfor %}
         </div>
         <div class="col-md-5">
             <h3>Subscribe</h3>

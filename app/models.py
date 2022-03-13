@@ -116,7 +116,10 @@ class Subscribe(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
-
+class Quote:
+    def __init__(self,author,quote):
+        self.author = author
+        self.quote = quote
 
 
 
