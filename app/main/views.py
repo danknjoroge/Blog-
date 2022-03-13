@@ -21,20 +21,22 @@ from flask_login import login_required
 def index():
     form = SubscribedUserForm()
     if form.validate_on_submit():
-        subscribe = Subscribe(email = form.email.data, username = form.username.data)
-        db.session.add(subscribe)
-        db.session.commit()
+        subscribe = Subscribe(email = form.email.data)
+        # db.session.add(subscribe)
+        # db.session.commit()
+        subscribe.save_subscriber()
         mail_message("Welcome to bloglist","email/subscribe",subscribe.email,user=subscribe)
 
         flash("Your Subscription is successful")
 
-        return redirect(url_for('main.index'))
+        return redirect(url_for('auth.login'))
 
     return render_template('index.html', subform = form)
 
 
 
 @main.route('/blog/', methods = ["GET","POST"])
+@login_required
 def postblog():
     blog_form = BlogForm()
     if blog_form.validate_on_submit():
@@ -57,6 +59,7 @@ def homepage():
 
 
 @main.route('/commentform/', methods = ["GET","POST"])
+@login_required
 def comment():
     form = CommentForm()
     if form.validate_on_submit():
@@ -69,6 +72,7 @@ def comment():
 
 
 @main.route('/commentview/')
+@login_required
 def viewcomment():
 
     '''

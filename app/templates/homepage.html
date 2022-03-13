@@ -1,12 +1,24 @@
+{% extends 'base.html'%}
 
-<a href="/blog/">Add blog</a>
+{% block content %}
+<div class="container">
+    <a href="/blog/">Add blog</a>
 
-{% for blogs in blog %}
-<h3>{{blogs.title }}</h3>
-<p>{{blogs.description}}</p>
-<p>Posted by:{{blogs.postedby}} </p>
-<p>posted on:{{blogs.date}}</p>
+    <div class="row">
+        {% for blogs in blog %}
+        <div class="col-md-6">
+            <div class="thumbnail">
+                <h3>{{blogs.title }}</h3>
+                <p>{{blogs.description}}</p>
+                <p>Posted by:{{blogs.postedby}} </p>
+                <p>posted on:{{blogs.date}}</p>
 
-<a href="/commentform/">Comment</a>
-<a href="/commentview/">See Comments</a>
-{% endfor %}
+                <input type="button" value="Edit Blog">
+                <a href="/commentform/">Comment</a>
+                <a href="/commentview/">See Comments</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

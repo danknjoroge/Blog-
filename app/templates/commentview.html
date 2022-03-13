@@ -1,5 +1,22 @@
-{%for comment in comments %}
-{{comment.comment}}
-{{comment.madeby}}
-{{comment.dateposted}}
-{%endfor%}
+
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container">
+    <a href="{{url_for('main.homepage')}}">Back</a>
+
+
+    <div class="row">
+        {% for comment in comments %}
+        <div class="col-md-6">
+            <div class="thumbnail">
+                {{comment.comment}}
+                {{comment.madeby}}
+                {{comment.dateposted}}
+                <button class="bg-danger">Delete</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

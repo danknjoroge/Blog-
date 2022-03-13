@@ -7,7 +7,6 @@ from wtforms import ValidationError
 
 
 class SubscribedUserForm(FlaskForm):
-    username = StringField('Enter your username',validators = [DataRequired()])
     email = StringField('Your Email Address to subscribe to our daily Updates',validators=[DataRequired(),Email()])
     submit = SubmitField('Subscribe')
 
