@@ -49,7 +49,7 @@ class Blog(db.Model):
     __tablename__ = 'blogs'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(255))
-    description = db.Column(db.String(255))
+    description = db.Column(db.String(5555))
     # postedby = db.Column(db.String(255))
 
     date = db.Column(db.DateTime,default=datetime.utcnow)
