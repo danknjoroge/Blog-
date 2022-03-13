@@ -1,8 +1,8 @@
-from flask import redirect, render_template, url_for, flash
+from flask import abort, redirect, render_template, url_for, flash
 from .. import db
 from ..models import Blog, Comments, Subscribe
 from ..email import mail_message
-from .forms import BlogForm, CommentForm, SubscribedUserForm
+from .forms import BlogForm, CommentForm, SubscribedUserForm, UpdateBlog
 from . import main
 from flask_login import login_required
 
@@ -82,6 +82,23 @@ def viewcomment():
     comments = Comments.query.all()
     return render_template('commentview.html', comments=comments)
 
+@main.route('/blog/<uid>/blogupdate', methods = ["GET","POST"])
+@login_required
+def blogupdate(uid):
+    blog = Blog.query.filter_by(title=uid).first()
+    if blog is None:
+        abort(404)
+    
+    form = UpdateBlog()
 
+    if form.validate_on_submit():
+        blog.description = form.description.data
+
+        db.session.add(blog)
+        db.session.commit()
+
+        return redirect(url_for('.homepage',uid=blog.title))
+
+    return render_template('blogupdate.html',form =form)
 
 

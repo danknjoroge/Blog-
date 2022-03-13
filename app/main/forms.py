@@ -31,7 +31,8 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Add Comment')
 
 
-
+class UpdateBlog(FlaskForm):
+    description = TextAreaField('Update your blog', validators=[DataRequired()])
 
 
 
