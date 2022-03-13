@@ -12,7 +12,8 @@
             <a href="/blog/">Add blog</a>
 
             {% for quote in quotes%}
-                {{quote.quote}}
+                <p>{{quote.quote}}</p>
+                <h5>{{quote.author}}</h5>
             {% endfor %}
         </div>
         <div class="col-md-5">
