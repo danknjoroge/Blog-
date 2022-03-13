@@ -82,23 +82,58 @@ def viewcomment():
     comments = Comments.query.all()
     return render_template('commentview.html', comments=comments)
 
-@main.route('/blog/<uid>/blogupdate', methods = ["GET","POST"])
+
+
+
+@main.route('/blogupdate/', methods = ["GET","POST"])
 @login_required
-def blogupdate(uid):
-    blog = Blog.query.filter_by(title=uid).first()
-    if blog is None:
-        abort(404)
+def blogupdate():
+    # blog = Blog.query.filter_by(id).first()
+    # if blog is None:
+    #     abort(404)
     
     form = UpdateBlog()
 
     if form.validate_on_submit():
-        blog.description = form.description.data
+        description = form.description.data
 
+        blog = Blog(description=description)
         db.session.add(blog)
         db.session.commit()
 
-        return redirect(url_for('.homepage',uid=blog.title))
+        return redirect(url_for('.homepage'))
 
     return render_template('blogupdate.html',form =form)
+
+
+
+# @main.route('/blog/<uid>')
+# def blog(uid):
+#     blog = Blog.query.filter_by(title = uid).first()
+
+#     if blog is None:
+#         abort(404)
+
+#     return render_template("blogu.html", blog = blog)
+
+
+# @main.route('/blog/<uid>/blogupdate', methods = ["GET","POST"])
+# @login_required
+# def blogupdate(uid):
+#     blog = Blog.query.filter_by(title=uid).first()
+#     if blog is None:
+#         abort(404)
+    
+#     form = UpdateBlog()
+
+#     if form.validate_on_submit():
+#         blog.description = form.description.data
+
+#         db.session.add(blog)
+#         db.session.commit()
+
+#         return redirect(url_for('.homepage',uid=blog.title))
+
+#     return render_template('blogupdate.html',form =form)
 
 

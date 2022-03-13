@@ -14,12 +14,13 @@
                 <p>posted on:{{blogs.date}}</p>
 
                 <!-- <a href="/blogupdate/"><input type="button" value="Edit Blog"></a> -->
-                {% if blog == current_blog %}
-                <a href="{{url_for('main.postblog',uid=blog.title)}}">Edit Blog</a>
-                {% endif %}
+                
+                <a href="{{url_for('main.blogupdate')}}">Edit Blog</a>
+                
                 <a href="/commentform/">Comment</a>
                 <a href="/commentview/">See Comments</a>
-            </div>
+            
+                </div>
         </div>
         {% endfor %}
     </div>
