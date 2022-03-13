@@ -10,16 +10,18 @@
             <div class="thumbnail">
                 <h3>{{blogs.title }}</h3>
                 <p>{{blogs.description}}</p>
-                <p>Posted by:{{blogs.postedby}} </p>
+                <p>Posted by:{{current_user.username}} </p>
                 <p>posted on:{{blogs.date}}</p>
-
+                
                 <!-- <a href="/blogupdate/"><input type="button" value="Edit Blog"></a> -->
                 
                 <a href="{{url_for('main.blogupdate')}}">Edit Blog</a>
                 
                 <a href="/commentform/">Comment</a>
                 <a href="/commentview/">See Comments</a>
-            
+
+
+              
                 </div>
         </div>
         {% endfor %}

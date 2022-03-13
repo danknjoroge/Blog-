@@ -19,14 +19,14 @@ class SubscribedUserForm(FlaskForm):
 class BlogForm(FlaskForm):
     title = StringField('Blog Title ',validators = [DataRequired()])
     description = TextAreaField('Write your Blog ',validators=[DataRequired()])
-    postedby = StringField('Posted By: ',validators = [DataRequired()])
+    # postedby = StringField('Posted By: ',validators = [DataRequired()])
     date = DateField('Posting Date', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 
 class CommentForm(FlaskForm):
     comment = TextAreaField('Post your Comment ',validators=[DataRequired()])
-    madeby = StringField('Made By: ',validators = [DataRequired()])
+    # madeby = StringField('Made By: ',validators = [DataRequired()])
     dateposted = DateField('Posting Date', validators=[DataRequired()])
     submit = SubmitField('Add Comment')
 
