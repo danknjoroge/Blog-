@@ -14,6 +14,13 @@ input{
     color: white;
     font-weight: bold;
 }
+.fuirst{
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    height: 770px;
+    width: 120px;
+}
 .thumbnail{
     background-color: antiquewhite;
     border-top-left-radius: 43px;
@@ -23,6 +30,9 @@ h3{
     color: orangered;
     font-weight: bold;
     font-style: oblique;
+}
+h3,h4{
+    font-style: italic;
 }
 
 

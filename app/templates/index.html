@@ -27,6 +27,12 @@
             {% endfor %}
         </div>
         <div class="col-md-5 form">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+        </div>
+      {% endfor %}
             <h3>Subscribe</h3>
             {{wtf.quick_form(subform)}}
         </div>
